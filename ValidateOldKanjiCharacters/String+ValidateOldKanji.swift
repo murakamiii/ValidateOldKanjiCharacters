@@ -23,8 +23,14 @@ extension String {
         }
         
         // http://charset.7jp.net/sjis.html のIBM拡張(?)で漢字相当の範囲を引っ掛ける
-        let regEx = ".*[\u{ed40}-\u{eeec}]+.*"
-        let test = NSPredicate(format: "SELF MATCHES %@", regEx)
+        let regEx = ".*[纊-黑]+.*"
+        guard let dataRegEx = regEx.data(using: .shiftJIS),
+            let shiftJISRegEx = String(data: dataRegEx, encoding: .shiftJIS)
+            else {
+                return false
+        }
+        
+        let test = NSPredicate(format: "SELF MATCHES %@", shiftJISRegEx)
         return test.evaluate(with:shiftJISStr)
         
 //        var values = [UInt8](data)

@@ -22,10 +22,11 @@ class ValidateOldKanjiCharactersTests: XCTestCase {
     }
     
     func testValidateOldKanjiCharacters() {
-        var str = "高橋"
+        let str = "高崎"
         XCTAssertFalse(str.containsOldKanji())
-        
-        str = "髙﨑"
-        XCTAssertTrue(str.containsOldKanji())
     }
-}
+    
+    func testValidateOldKanjiCharacters2() {
+        let str = "髙﨑"
+        XCTAssertTrue(str.containsOldKanji())
+    }}
